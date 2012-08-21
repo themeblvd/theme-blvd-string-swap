@@ -2,7 +2,7 @@
 /*
 Plugin Name: Theme Blvd String Swap
 Description: This plugin will allow you alter the standard text strings that appear on the frontend of your site when using a Theme Blvd theme.
-Version: 1.0.1
+Version: 1.0.2
 Author: Jason Bobich
 Author URI: http://jasonbobich.com
 License: GPL2
@@ -91,11 +91,18 @@ function tb_string_swap_get_strings() {
 
 function tb_string_swap_get_options() {
 	
-	// Include frontend locals, which are normally 
-	// not included in admin panel.
-	require_once( TEMPLATEPATH . '/framework/frontend/functions/locals.php' );
-	
-	// Retrieve current local text strings
+	// This is temporary fix until Theme Blvd framework 
+	// v2.2 officially gets released. When v2.2 gets released, 
+	// we'll replace all this with a warning admin notice 
+	// telling the user to update their theme.
+	$old_file = TEMPLATEPATH . '/framework/frontend/functions/locals.php';
+	$new_file = TEMPLATEPATH . '/framework/api/locals.php';
+	if( ! file_exists( $new_file ) )
+		include_once( $old_file );
+		
+	// Retrieve current local text strings -- This will also 
+	// be modified later to tell the user they need to 
+	// update their theme.
 	if( function_exists('themeblvd_get_all_locals') ) {
 		// Dynamically pull from theme with 
 		// filters applied.
