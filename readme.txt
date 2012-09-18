@@ -2,7 +2,7 @@
 Contributors: themeblvd
 Tags: themeblvd, localization, localize, translate
 Requires at least: Theme Blvd Framework 2.0+
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 
 When using a theme with Theme Blvd framework version 2.0.0+, this plugin is will allow to translate strings you see on the frontend only.
 
@@ -35,6 +35,14 @@ After you install this plugin, you can then go to *Tools > TB String Swap* in yo
 1. Admin interface for plugin under *Tools > TB String Swap*.
 
 == Changelog ==
+
+= 1.0.3 =
+
+* Added compatibility for framework v2.2.
+
+= 1.0.2 =
+
+* Added compatibility for latest Theme Blvd patch updates - Akita v1.1.5, Alyeska v2.1.5, Arcadian v1.1.5, Barely Corporate v3.1.5, Breakout v1.1.4, Prime Time v1.1.4, and Swagger 1.1.5
 
 = 1.0.1 =
 
