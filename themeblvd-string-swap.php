@@ -204,7 +204,7 @@ function tb_string_swap_admin() {
 
 		$args = array(
 			'parent'		=> 'tools.php',
-			'page_title' 	=> __( 'TB String Swap', 'tb_string_swap' ),
+			'page_title' 	=> __( 'Theme Blvd String Swap', 'tb_string_swap' ),
 			'menu_title' 	=> __( 'TB String Swap', 'tb_string_swap' ),
 			'cap'			=> apply_filters( 'tb_string_swap_cap', 'edit_theme_options' )
 		);
@@ -218,7 +218,7 @@ function tb_string_swap_admin() {
 	
 	}
 }
-add_action( 'init', 'tb_string_swap_admin' );
+add_action( 'after_setup_theme', 'tb_string_swap_admin' );
 
 /**
  * Hook everything in to being the process only if the user can 
