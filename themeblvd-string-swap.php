@@ -2,7 +2,7 @@
 /*
 Plugin Name: Theme Blvd String Swap
 Description: This plugin will allow you alter the standard text strings that appear on the frontend of your site when using a Theme Blvd theme.
-Version: 1.0.3
+Version: 1.0.4
 Author: Jason Bobich
 Author URI: http://jasonbobich.com
 License: GPL2
@@ -25,7 +25,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define( 'TB_STRING_SWAP_PLUGIN_VERSION', '1.0.3' );
+define( 'TB_STRING_SWAP_PLUGIN_VERSION', '1.0.4' );
 define( 'TB_STRING_SWAP_PLUGIN_DIR', dirname( __FILE__ ) );
 define( 'TB_STRING_SWAP_PLUGIN_URI', plugins_url( '' , __FILE__ ) );
 
