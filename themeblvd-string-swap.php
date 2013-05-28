@@ -45,13 +45,30 @@ add_action( 'plugins_loaded', 'tb_string_swap_textdomain' );
  * theme with Theme Blvd framework v2.2+ installed in 
  * order to run this plugin.
  *
- * @since 1.0.3
+ * @since 1.0.4
  */
 
 function tb_string_swap_warning() {
-	echo '<div class="updated">';
-	echo '<p>'.__( 'You currently have the "Theme Blvd String Swap" plugin activated, however you are not using a theme with Theme Blvd Framework v2.0+, and so this plugin will not do anything.', 'tb_string_swap' ).'</p>';
-	echo '</div>';
+	global $current_user;
+	// DEBUG: delete_user_meta( $current_user->ID, 'tb_shortcode_no_framework' )
+	if( ! get_user_meta( $current_user->ID, 'tb_string_swap_no_framework' ) ){
+		echo '<div class="updated">';
+		echo '<p>'.__( 'You currently have the "Theme Blvd String Swap" plugin activated, however you are not using a compatible Theme Blvd theme, and so this plugin will not do anything.', 'tb_string_swap' ).'</p>';
+		echo '<p><a href="?tb_nag_ignore=tb_string_swap_no_framework">'.__('Dismiss this notice', 'tb_string_swap').'</a> | <a href="http://www.themeblvd.com" target="_blank">'.__('Visit ThemeBlvd.com', 'tb_string_swap').'</a></p>';
+		echo '</div>';
+	}
+}
+
+/**
+ * Dismiss an admin notice.
+ *
+ * @since 1.0.4
+ */
+
+function tb_string_swap_disable_nag() {
+	global $current_user;
+    if ( isset( $_GET['tb_nag_ignore'] ) )
+         add_user_meta( $current_user->ID, $_GET['tb_nag_ignore'], 'true', true );
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -188,6 +205,7 @@ function tb_string_swap_admin() {
 	// Check to make sure Theme Blvd Framework 2.0+ is running
 	if( ! defined( 'TB_FRAMEWORK_VERSION' ) || version_compare( TB_FRAMEWORK_VERSION, '2.0.0', '<' ) ) {
 		add_action( 'admin_notices', 'tb_string_swap_warning' );
+		add_action( 'admin_init', 'tb_string_swap_disable_nag' );
 		return;
 	}
 	
