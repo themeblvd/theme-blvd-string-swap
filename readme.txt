@@ -38,7 +38,7 @@ After you install this plugin, you can then go to *Tools > TB String Swap* in yo
 
 = 1.0.4 =
 
-* Added compatibility for framework v2.3s.
+* Added compatibility for framework v2.3.
 
 = 1.0.3 =
 
