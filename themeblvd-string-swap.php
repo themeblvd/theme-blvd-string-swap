@@ -54,7 +54,7 @@ function tb_string_swap_warning() {
 	if( ! get_user_meta( $current_user->ID, 'tb_string_swap_no_framework' ) ){
 		echo '<div class="updated">';
 		echo '<p>'.__( 'You currently have the "Theme Blvd String Swap" plugin activated, however you are not using a compatible Theme Blvd theme, and so this plugin will not do anything.', 'tb_string_swap' ).'</p>';
-		echo '<p><a href="?tb_nag_ignore=tb_string_swap_no_framework">'.__('Dismiss this notice', 'tb_string_swap').'</a> | <a href="http://www.themeblvd.com" target="_blank">'.__('Visit ThemeBlvd.com', 'tb_string_swap').'</a></p>';
+		echo '<p><a href="'.tb_string_swap_disable_url('tb_string_swap_no_framework').'">'.__('Dismiss this notice', 'tb_string_swap').'</a> | <a href="http://www.themeblvd.com" target="_blank">'.__('Visit ThemeBlvd.com', 'tb_string_swap').'</a></p>';
 		echo '</div>';
 	}
 }
@@ -69,6 +69,26 @@ function tb_string_swap_disable_nag() {
 	global $current_user;
     if ( isset( $_GET['tb_nag_ignore'] ) )
          add_user_meta( $current_user->ID, $_GET['tb_nag_ignore'], 'true', true );
+}
+
+/**
+ * Disable admin notice URL.
+ *
+ * @since 1.0.5
+ */
+
+function tb_string_swap_disable_url( $id ) {
+
+	global $pagenow;
+
+	$url = admin_url( $pagenow );
+
+	if( ! empty( $_SERVER['QUERY_STRING'] ) )
+		$url .= sprintf( '?%s&tb_nag_ignore=%s', $_SERVER['QUERY_STRING'], $id );
+	else
+		$url .= sprintf( '?tb_nag_ignore=%s', $id );
+
+	return $url;
 }
 
 /*-----------------------------------------------------------------------------------*/

@@ -38,6 +38,8 @@ After you install this plugin, you can then go to *Tools > TB String Swap* in yo
 
 = 1.0.5 =
 
+* Fixed "Dismiss" link not working for framework notice on all admin pages.
+
 = 1.0.4 =
 
 * Added compatibility for framework v2.3.
