@@ -210,6 +210,12 @@ function tb_string_swap_get_options() {
 		'type' 	=> 'textarea'
 	);
 
+	if ( version_compare(TB_FRAMEWORK_VERSION, '2.5.0', '>=') ) { // Having this ommitted in older themes is for the "closer" bug!
+		$options[] = array(
+			'type' => 'section_end'
+		);
+	}
+
 	return $options;
 }
 
@@ -408,15 +414,18 @@ function tb_string_swap_page() {
  *
  * This is the actual function that is used to add
  * the filter to "themeblvd_frontend_locals" of the
- * theme framework.
+ * theme framework. Frontend only!
  */
 function tb_string_swap_apply_changes( $locals ) {
 
-	$new_locals = get_option('theme-blvd-string-swap');
+	if ( ! is_admin() || ( defined('DOING_AJAX') && DOING_AJAX ) ) {
 
-	foreach ( $locals as $id => $string ) {
-		if ( isset( $new_locals[$id] ) ) {
-			$locals[$id] = $new_locals[$id];
+		$new_locals = get_option('theme-blvd-string-swap');
+
+		foreach ( $locals as $id => $string ) {
+			if ( isset( $new_locals[$id] ) ) {
+				$locals[$id] = $new_locals[$id];
+			}
 		}
 	}
 
