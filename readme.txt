@@ -2,13 +2,13 @@
 Contributors: themeblvd
 Tags: themeblvd, localization, localize, translate
 Requires at least: Theme Blvd Framework 2.0+
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 
-When using a theme with Theme Blvd framework version 2.0.0+, this plugin is will allow to translate strings you see on the frontend only.
+When using a theme with Theme Blvd framework version 2.0+, this plugin is will allow to translate strings you see on the frontend of your website.
 
 == Description ==
 
-When using a theme with Theme Blvd framework version 2.0.0+, this plugin is will provide you with a user-friendly interface where you can translate most of the strings you see on the frontend of your site.
+When using a theme with Theme Blvd framework version 2.0+, this plugin is will provide you with a user-friendly interface to translate most of the strings you see on the frontend of your website.
 
 = Who is this plugin for? =
 
@@ -22,7 +22,7 @@ This plugin is useful for people trying to accomplish a couple different things.
 
 Within the Theme Blvd framework, *most* strings that appear on the frontend of your site come from a single array that we've placed a filter on. This means that from your own child theme or plugin, you could easily change any one of these text strings.
 
-After you install this plugin, you can then go to *Tools > TB String Swap* in your WordPress admin panel and change any of these text strings through the user-friendly interface, opposed to ever editing any code. 
+After you install this plugin, you can then go to *Tools > TB String Swap* in your WordPress admin panel and change any of these text strings through the user-friendly interface, opposed to ever editing any code.
 
 == Installation ==
 
@@ -35,6 +35,8 @@ After you install this plugin, you can then go to *Tools > TB String Swap* in yo
 1. Admin interface for plugin under *Tools > TB String Swap*.
 
 == Changelog ==
+
+= 1.0.6 =
 
 = 1.0.5 =
 
