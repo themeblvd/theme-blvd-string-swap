@@ -183,6 +183,7 @@ function tb_string_swap_get_options() {
 		'desc'	=> __( 'Here you can find most of the text strings that you will typically find on the frontend of your site when using a Theme Blvd theme. Simply enter in a new value for each one that you want to change.<br><br>Note: This is a general plugin aimed at working with all Theme Blvd themes, however it\'s impossible to guarantee that this will effect every theme in the exact same way.', 'theme-blvd-string-swap' ),
 		'type' 	=> 'section_start'
 	);
+
 	foreach( $locals as $id => $string ) {
 		$options[] = array(
 			'desc' 	=> '<strong>'.__( 'Internal ID', 'theme-blvd-string-swap' ).':</strong> '.$id.'<br><strong>'.__( 'Original String', 'theme-blvd-string-swap' ).':</strong> '.$string,
@@ -191,20 +192,24 @@ function tb_string_swap_get_options() {
 			'type' 	=> 'textarea'
 		);
 	}
+
 	$options[] = array(
 		'type' => 'section_end'
 	);
+
 	$options[] = array(
-		'name'	=> __( 'Post List Meta', 'theme-blvd-string-swap' ),
-		'desc'	=> __( 'This last option isn\'t technically part of the framework\'s frontend localization filter. However, if you were trying to translate all the frontend strings of the theme, it would be unfortunate for there to be no way to translate the meta info that appears in your blog. So, I\'ve gotten creative and tried to give you the ability to edit this. Keep in mind there is no way to guarentee that this will work in <em>all</em> themes, but play around with and see if it works for you. Also the down side to using this is that I couldn\'t figure out a good way for you to input the number of comments in this string.<br><br><strong>Note: Save this option as blank to allow the theme to show it\'s normal meta info.</strong>', 'theme-blvd-string-swap' ),
+		'name'	=> __( 'Blog Meta', 'theme-blvd-string-swap' ),
+		'desc'	=> null,
 		'type' 	=> 'section_start'
 	);
+
 	$options[] = array(
-		'desc' 	=> __( 'Designate how you\'d like the meta info to display in your blog. This typically will show below the title of blog posts in most theme designs.<br><br>You can use the following macros:<br><strong>%date%</strong> - Date post was published.<br><strong>%author%</strong> - Author that wrote the post.<br><strong>%categories%</strong> - Categories post belongs to.', 'theme-blvd-string-swap' ),
+		'desc' 	=> __( 'Designate how you\'d like the meta info to display in your blog. This typically will show below the title of blog posts in most theme designs.<br><br>You can use the following macros:<br><strong>%date%</strong> - Date post was published.<br><strong>%author%</strong> - Author that wrote the post.<br><strong>%categories%</strong> - Categories post belongs to.<br><br><em>Note: Save this option as blank to allow the theme to show its normal meta info.</em>', 'theme-blvd-string-swap' ),
 		'id' 	=> 'blog_meta',
 		'std' 	=> __( 'Posted on %date% by %author% in %categories%', 'theme-blvd-string-swap' ),
 		'type' 	=> 'textarea'
 	);
+
 	return $options;
 }
 
