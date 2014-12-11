@@ -35,9 +35,9 @@ define( 'TB_STRING_SWAP_PLUGIN_URI', plugins_url( '' , __FILE__ ) );
  * @since 1.0.3
  */
 function tb_string_swap_textdomain() {
-	load_plugin_textdomain( 'tb_string_swap', false, TB_STRING_SWAP_PLUGIN_DIR . '/lang' );
+	load_plugin_textdomain('theme-blvd-string-swap');
 }
-add_action( 'plugins_loaded', 'tb_string_swap_textdomain' );
+add_action( 'init', 'tb_string_swap_textdomain' );
 
 /**
  * Display warning telling the user they must have a
@@ -51,8 +51,8 @@ function tb_string_swap_warning() {
 	// DEBUG: delete_user_meta( $current_user->ID, 'tb_shortcode_no_framework' )
 	if ( ! get_user_meta( $current_user->ID, 'tb_string_swap_no_framework' ) ){
 		echo '<div class="updated">';
-		echo '<p>'.__( 'You currently have the "Theme Blvd String Swap" plugin activated, however you are not using a compatible Theme Blvd theme, and so this plugin will not do anything.', 'tb_string_swap' ).'</p>';
-		echo '<p><a href="'.tb_string_swap_disable_url('tb_string_swap_no_framework').'">'.__('Dismiss this notice', 'tb_string_swap').'</a> | <a href="http://www.themeblvd.com" target="_blank">'.__('Visit ThemeBlvd.com', 'tb_string_swap').'</a></p>';
+		echo '<p>'.__( 'You currently have the "Theme Blvd String Swap" plugin activated, however you are not using a compatible Theme Blvd theme, and so this plugin will not do anything.', 'theme-blvd-string-swap' ).'</p>';
+		echo '<p><a href="'.tb_string_swap_disable_url('tb_string_swap_no_framework').'">'.__('Dismiss this notice', 'theme-blvd-string-swap').'</a> | <a href="http://www.themeblvd.com" target="_blank">'.__('Visit ThemeBlvd.com', 'theme-blvd-string-swap').'</a></p>';
 		echo '</div>';
 	}
 }
@@ -179,13 +179,13 @@ function tb_string_swap_get_options() {
 
 	// Configure options array
 	$options[] = array(
-		'name'	=> __( 'Standard Text Strings', 'tb_string_swap' ),
-		'desc'	=> __( 'Here you can find most of the text strings that you will typically find on the frontend of your site when using a Theme Blvd theme. Simply enter in a new value for each one that you want to change.<br><br>Note: This is a general plugin aimed at working with all Theme Blvd themes, however it\'s impossible to guarantee that this will effect every theme in the exact same way.', 'tb_string_swap' ),
+		'name'	=> __( 'Standard Text Strings', 'theme-blvd-string-swap' ),
+		'desc'	=> __( 'Here you can find most of the text strings that you will typically find on the frontend of your site when using a Theme Blvd theme. Simply enter in a new value for each one that you want to change.<br><br>Note: This is a general plugin aimed at working with all Theme Blvd themes, however it\'s impossible to guarantee that this will effect every theme in the exact same way.', 'theme-blvd-string-swap' ),
 		'type' 	=> 'section_start'
 	);
 	foreach( $locals as $id => $string ) {
 		$options[] = array(
-			'desc' 	=> '<strong>'.__( 'Internal ID', 'tb_string_swap' ).':</strong> '.$id.'<br><strong>'.__( 'Original String', 'tb_string_swap' ).':</strong> '.$string,
+			'desc' 	=> '<strong>'.__( 'Internal ID', 'theme-blvd-string-swap' ).':</strong> '.$id.'<br><strong>'.__( 'Original String', 'theme-blvd-string-swap' ).':</strong> '.$string,
 			'id' 	=> $id,
 			'std' 	=> $string,
 			'type' 	=> 'textarea'
@@ -195,14 +195,14 @@ function tb_string_swap_get_options() {
 		'type' => 'section_end'
 	);
 	$options[] = array(
-		'name'	=> __( 'Post List Meta', 'tb_string_swap' ),
-		'desc'	=> __( 'This last option isn\'t technically part of the framework\'s frontend localization filter. However, if you were trying to translate all the frontend strings of the theme, it would be unfortunate for there to be no way to translate the meta info that appears in your blog. So, I\'ve gotten creative and tried to give you the ability to edit this. Keep in mind there is no way to guarentee that this will work in <em>all</em> themes, but play around with and see if it works for you. Also the down side to using this is that I couldn\'t figure out a good way for you to input the number of comments in this string.<br><br><strong>Note: Save this option as blank to allow the theme to show it\'s normal meta info.</strong>', 'tb_string_swap' ),
+		'name'	=> __( 'Post List Meta', 'theme-blvd-string-swap' ),
+		'desc'	=> __( 'This last option isn\'t technically part of the framework\'s frontend localization filter. However, if you were trying to translate all the frontend strings of the theme, it would be unfortunate for there to be no way to translate the meta info that appears in your blog. So, I\'ve gotten creative and tried to give you the ability to edit this. Keep in mind there is no way to guarentee that this will work in <em>all</em> themes, but play around with and see if it works for you. Also the down side to using this is that I couldn\'t figure out a good way for you to input the number of comments in this string.<br><br><strong>Note: Save this option as blank to allow the theme to show it\'s normal meta info.</strong>', 'theme-blvd-string-swap' ),
 		'type' 	=> 'section_start'
 	);
 	$options[] = array(
-		'desc' 	=> __( 'Designate how you\'d like the meta info to display in your blog. This typically will show below the title of blog posts in most theme designs.<br><br>You can use the following macros:<br><strong>%date%</strong> - Date post was published.<br><strong>%author%</strong> - Author that wrote the post.<br><strong>%categories%</strong> - Categories post belongs to.', 'tb_string_swap' ),
+		'desc' 	=> __( 'Designate how you\'d like the meta info to display in your blog. This typically will show below the title of blog posts in most theme designs.<br><br>You can use the following macros:<br><strong>%date%</strong> - Date post was published.<br><strong>%author%</strong> - Author that wrote the post.<br><strong>%categories%</strong> - Categories post belongs to.', 'theme-blvd-string-swap' ),
 		'id' 	=> 'blog_meta',
-		'std' 	=> __( 'Posted on %date% by %author% in %categories%', 'tb_string_swap' ),
+		'std' 	=> __( 'Posted on %date% by %author% in %categories%', 'theme-blvd-string-swap' ),
 		'type' 	=> 'textarea'
 	);
 	return $options;
@@ -239,12 +239,12 @@ function tb_string_swap_admin() {
 
 		$args = array(
 			'parent'		=> 'tools.php',
-			'page_title' 	=> __( 'Theme Blvd String Swap', 'tb_string_swap' ),
-			'menu_title' 	=> __( 'TB String Swap', 'tb_string_swap' ),
+			'page_title' 	=> __( 'Theme Blvd String Swap', 'theme-blvd-string-swap' ),
+			'menu_title' 	=> __( 'TB String Swap', 'theme-blvd-string-swap' ),
 			'cap'			=> apply_filters( 'tb_string_swap_cap', 'edit_theme_options' )
 		);
 
-		$_tb_string_swap_admin = new Theme_Blvd_Options_Page( 'tb_string_swap', $options, $args );
+		$_tb_string_swap_admin = new Theme_Blvd_Options_Page( 'theme-blvd-string-swap', $options, $args );
 
 	} else {
 
@@ -275,7 +275,7 @@ function tb_string_swap_rolescheck() {
  */
 function tb_string_swap_add_page() {
 	// Create sub menu page
-	$string_swap_page = add_submenu_page( 'tools.php', 'TB String Swap', 'TB String Swap', 'administrator', 'tb_string_swap', 'tb_string_swap_page' );
+	$string_swap_page = add_submenu_page( 'tools.php', 'TB String Swap', 'TB String Swap', 'administrator', 'theme-blvd-string-swap', 'tb_string_swap_page' );
 	// Adds actions to hook in the required css and javascript
 	add_action( "admin_print_styles-$string_swap_page", 'optionsframework_load_styles' );
 	add_action( "admin_print_scripts-$string_swap_page", 'optionsframework_load_scripts' );
@@ -290,7 +290,7 @@ function tb_string_swap_add_page() {
  */
 function tb_string_swap_init() {
 	// Register settings
-	register_setting( 'tb_string_swap_settings', 'tb_string_swap', 'tb_string_swap_validate' );
+	register_setting( 'tb_string_swap_settings', 'theme-blvd-string-swap', 'tb_string_swap_validate' );
 }
 
 /**
@@ -310,7 +310,7 @@ function tb_string_swap_validate( $input ) {
 	// Reset Settings
 	if ( isset( $_POST['reset'] ) ) {
 		$empty = array();
-		add_settings_error( 'tb_string_swap', 'restore_defaults', __( 'Default options restored.', 'tb_string_swap' ), 'updated fade' );
+		add_settings_error( 'theme-blvd-string-swap', 'restore_defaults', __( 'Default options restored.', 'theme-blvd-string-swap' ), 'updated fade' );
 		return $empty;
 	}
 
@@ -346,7 +346,7 @@ function tb_string_swap_validate( $input ) {
 			}
 		}
 
-		add_settings_error( 'tb_string_swap', 'save_options', __( 'Options saved.', 'tb_string_swap' ), 'updated fade' );
+		add_settings_error( 'theme-blvd-string-swap', 'save_options', __( 'Options saved.', 'theme-blvd-string-swap' ), 'updated fade' );
 
 		return $clean;
 	}
@@ -364,18 +364,18 @@ function tb_string_swap_validate( $input ) {
 function tb_string_swap_page() {
 
 	// DEBUG
-	// $settings = get_option('tb_string_swap');
+	// $settings = get_option('theme-blvd-string-swap');
 	// echo '<pre>'; print_r($settings); echo '</pre>';
 
 	// Build form
 	$options = tb_string_swap_get_options();
-	$settings = get_option('tb_string_swap');
+	$settings = get_option('theme-blvd-string-swap');
 	$form = optionsframework_fields( 'options', $options, $settings, false );
 	settings_errors();
 	?>
 	<div id="tb_string_swap">
 		<div id="optionsframework" class="wrap">
-		    <h2><?php _e( 'Theme Blvd String Swap', 'tb_string_swap' ); ?></h2>
+		    <h2><?php _e( 'Theme Blvd String Swap', 'theme-blvd-string-swap' ); ?></h2>
 			<div class="metabox-holder">
 				<form id="tb_string_swap_form" action="options.php" method="post">
 					<?php settings_fields('tb_string_swap_settings'); ?>
@@ -383,8 +383,8 @@ function tb_string_swap_page() {
 						<?php echo $form[0]; ?>
 					</div><!-- .group (end) -->
 					 <div id="optionsframework-submit">
-						<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( __( 'Save Options', 'tb_string_swap' ) ); ?>" />
-			            <input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'tb_string_swap' ) ); ?>' );" />
+						<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( __( 'Save Options', 'theme-blvd-string-swap' ) ); ?>" />
+			            <input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'theme-blvd-string-swap' ) ); ?>' );" />
 			            <div class="clear"></div>
 					</div>
 				</form><!-- #tb_string_swap_form (end) -->
@@ -407,7 +407,7 @@ function tb_string_swap_page() {
  */
 function tb_string_swap_apply_changes( $locals ) {
 
-	$new_locals = get_option('tb_string_swap');
+	$new_locals = get_option('theme-blvd-string-swap');
 
 	foreach ( $locals as $id => $string ) {
 		if ( isset( $new_locals[$id] ) ) {
@@ -425,7 +425,7 @@ add_filter( 'themeblvd_frontend_locals', 'tb_string_swap_apply_changes', 999 );
 function tb_string_swap_blog_meta() {
 
 	// Grab parts
-	$new_locals = get_option('tb_string_swap');
+	$new_locals = get_option('theme-blvd-string-swap');
 	$meta = $new_locals['blog_meta'];
 	$author_string = '<a href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'" rel="author">'.get_the_author().'</a>';
 
@@ -447,7 +447,9 @@ function tb_string_swap_blog_meta() {
  * hook, and add in this one.
  */
 function tb_string_swap_add_actions() {
-	$new_locals = get_option('tb_string_swap');
+
+	$new_locals = get_option('theme-blvd-string-swap');
+
 	if ( isset( $new_locals['blog_meta'] ) && $new_locals['blog_meta'] ) {
 		remove_all_actions( 'themeblvd_blog_meta' );
 		add_action( 'themeblvd_blog_meta', 'tb_string_swap_blog_meta' );
