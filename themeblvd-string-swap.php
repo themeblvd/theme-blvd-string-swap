@@ -375,7 +375,6 @@ function tb_string_swap_page() {
 	?>
 	<div id="tb_string_swap">
 		<div id="optionsframework" class="wrap">
-		    <?php screen_icon( 'tools' ); ?>
 		    <h2><?php _e( 'Theme Blvd String Swap', 'tb_string_swap' ); ?></h2>
 			<div class="metabox-holder">
 				<form id="tb_string_swap_form" action="options.php" method="post">
