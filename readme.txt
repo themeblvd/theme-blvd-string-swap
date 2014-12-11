@@ -39,6 +39,7 @@ After you install this plugin, you can then go to *Tools > TB String Swap* in yo
 = 1.0.6 =
 
 * GlotPress compatibility (for 2015 wordpress.org release).
+* Minor security fix.
 
 = 1.0.5 =
 

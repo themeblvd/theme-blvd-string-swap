@@ -47,12 +47,15 @@ add_action( 'init', 'tb_string_swap_textdomain' );
  * @since 1.0.4
  */
 function tb_string_swap_warning() {
+
 	global $current_user;
-	// DEBUG: delete_user_meta( $current_user->ID, 'tb_shortcode_no_framework' )
-	if ( ! get_user_meta( $current_user->ID, 'tb_string_swap_no_framework' ) ){
+
+	// DEBUG: delete_user_meta( $current_user->ID, 'tb-nag-shortcodes-no-framework' );
+
+	if ( ! get_user_meta( $current_user->ID, 'tb-nag-string-swap-no-framework' ) ) {
 		echo '<div class="updated">';
-		echo '<p>'.__( 'You currently have the "Theme Blvd String Swap" plugin activated, however you are not using a compatible Theme Blvd theme, and so this plugin will not do anything.', 'theme-blvd-string-swap' ).'</p>';
-		echo '<p><a href="'.tb_string_swap_disable_url('tb_string_swap_no_framework').'">'.__('Dismiss this notice', 'theme-blvd-string-swap').'</a> | <a href="http://www.themeblvd.com" target="_blank">'.__('Visit ThemeBlvd.com', 'theme-blvd-string-swap').'</a></p>';
+		echo '<p><strong>Theme Blvd String Swap:</strong> '.__( 'You are not using a theme with the Theme Blvd Framework v2+, and so this plugin will not do anything.', 'theme-blvd-string-swap' ).'</p>';
+		echo '<p><a href="'.tb_string_swap_disable_url('string-swap-no-framework').'">'.__('Dismiss this notice', 'theme-blvd-string-swap').'</a> | <a href="http://www.themeblvd.com" target="_blank">'.__('Visit ThemeBlvd.com', 'theme-blvd-string-swap').'</a></p>';
 		echo '</div>';
 	}
 }
@@ -63,15 +66,26 @@ function tb_string_swap_warning() {
  * @since 1.0.4
  */
 function tb_string_swap_disable_nag() {
+
 	global $current_user;
-    if ( isset( $_GET['tb_nag_ignore'] ) )
-         add_user_meta( $current_user->ID, $_GET['tb_nag_ignore'], 'true', true );
+
+	if ( ! isset($_GET['nag-ignore']) ) {
+		return;
+	}
+
+	if ( strpos($_GET['nag-ignore'], 'tb-nag-') !== 0 ) { // meta key must start with "tb-nag-"
+		return;
+	}
+
+	if ( isset($_GET['security']) && wp_verify_nonce( $_GET['security'], 'themeblvd-string-swap-nag' ) ) {
+		add_user_meta( $current_user->ID, $_GET['nag-ignore'], 'true', true );
+	}
 }
 
 /**
  * Disable admin notice URL.
  *
- * @since 1.0.5
+ * @since 1.0.4
  */
 function tb_string_swap_disable_url( $id ) {
 
@@ -79,10 +93,13 @@ function tb_string_swap_disable_url( $id ) {
 
 	$url = admin_url( $pagenow );
 
-	if ( ! empty( $_SERVER['QUERY_STRING'] ) )
-		$url .= sprintf( '?%s&tb_nag_ignore=%s', $_SERVER['QUERY_STRING'], $id );
-	else
-		$url .= sprintf( '?tb_nag_ignore=%s', $id );
+	if( ! empty( $_SERVER['QUERY_STRING'] ) ) {
+		$url .= sprintf( '?%s&nag-ignore=%s', $_SERVER['QUERY_STRING'], 'tb-nag-'.$id );
+	} else {
+		$url .= sprintf( '?nag-ignore=%s', 'tb-nag-'.$id );
+	}
+
+	$url .= sprintf( '&security=%s', wp_create_nonce('themeblvd-string-swap-nag') );
 
 	return $url;
 }
@@ -168,13 +185,17 @@ function tb_string_swap_get_options() {
 	// be modified later to tell the user they need to
 	// update their theme.
 	if ( function_exists('themeblvd_get_all_locals') ) {
+
 		// Dynamically pull from theme with
 		// filters applied.
 		$locals = themeblvd_get_all_locals();
+
 	} else {
+
 		// Old method for people using Theme Blvd
 		// framework prior to 2.1
 		$locals = tb_string_swap_get_strings();
+
 	}
 
 	// Configure options array
