@@ -38,6 +38,8 @@ After you install this plugin, you can then go to *Tools > TB String Swap* in yo
 
 = 1.0.7 =
 
+* Fixed issues with previously saved options not showing up after last update.
+
 = 1.0.6 =
 
 * GlotPress compatibility (for 2015 wordpress.org release).
