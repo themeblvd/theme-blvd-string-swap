@@ -36,38 +36,38 @@ After you install this plugin, you can then go to *Tools > TB String Swap* in yo
 
 == Changelog ==
 
-= 1.0.8 =
+= 1.0.8 - 09/07/2015 =
 
-= 1.0.7 =
+= 1.0.7 - 12/17/14 =
 
 * Fixed issues with previously saved options not showing up after last update.
 
-= 1.0.6 =
+= 1.0.6 - 12/11/14 =
 
 * GlotPress compatibility (for 2015 wordpress.org release).
 * Minor security fix.
 
-= 1.0.5 =
+= 1.0.5 - 06/05/13 =
 
 * Fixed "Dismiss" link not working for framework notice on all admin pages.
 
-= 1.0.4 =
+= 1.0.4 - 05/28/13 =
 
 * Added compatibility for framework v2.3.
 
-= 1.0.3 =
+= 1.0.3 - 09/18/12 =
 
 * Added compatibility for framework v2.2.
 
-= 1.0.2 =
+= 1.0.2 - 08/22/12 =
 
 * Added compatibility for latest Theme Blvd patch updates - Akita v1.1.5, Alyeska v2.1.5, Arcadian v1.1.5, Barely Corporate v3.1.5, Breakout v1.1.4, Prime Time v1.1.4, and Swagger 1.1.5
 
-= 1.0.1 =
+= 1.0.1 - 05/18/12 =
 
 * Plugin now works with a more dynamically to pull text strings with new structure of [Theme Blvd Framework 2.1 update](http://www.wpjumpstart.com/framework-updates/theme-blvd-2-1-0-framework-update/) with fallbacks built-in for previous framework versions.
 * Added higher priority to text string filter to ensure that the plugin will, not only override the framework, but also any text strings edits your premium theme may have made.
 
-= 1.0.0 =
+= 1.0.0 - 01/30/12 =
 
 * This is the first release.
