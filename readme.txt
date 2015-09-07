@@ -22,21 +22,23 @@ This plugin is useful for people trying to accomplish a couple different things.
 
 Within the Theme Blvd framework, *most* strings that appear on the frontend of your site come from a single array that we've placed a filter on. This means that from your own child theme or plugin, you could easily change any one of these text strings.
 
-After you install this plugin, you can then go to *Tools > TB String Swap* in your WordPress admin panel and change any of these text strings through the user-friendly interface, opposed to ever editing any code.
+After you install this plugin, you can then go to *Appearance > Theme Text Strings* in your WordPress admin panel and change any of these text strings through the user-friendly interface, opposed to ever editing any code.
 
 == Installation ==
 
 1. Upload `theme-blvd-string-swap` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to *Tools > TB String Swap* to use.
+3. Go to *Appearance > Text Strings* to use.
 
 == Screenshots ==
 
-1. Admin interface for plugin under *Tools > TB String Swap*.
+1. Admin interface for plugin under *Appearance > Theme Text Strings*.
 
 == Changelog ==
 
 = 1.0.8 - 09/07/2015 =
+
+* Admin page moved to *Appearance > Theme Text Strings*.
 
 = 1.0.7 - 12/17/14 =
 

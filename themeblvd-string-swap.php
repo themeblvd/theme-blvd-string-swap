@@ -270,9 +270,9 @@ function tb_string_swap_admin() {
 		$options = tb_string_swap_get_options();
 
 		$args = array(
-			'parent'		=> 'tools.php',
-			'page_title' 	=> __( 'Theme Blvd String Swap', 'theme-blvd-string-swap' ),
-			'menu_title' 	=> __( 'TB String Swap', 'theme-blvd-string-swap' ),
+			'parent'		=> 'themes.php', // only used prior to framework 2.5.2
+			'page_title' 	=> __( 'Theme Text Strings', 'theme-blvd-string-swap' ),
+			'menu_title' 	=> __( 'Theme Text Strings', 'theme-blvd-string-swap' ),
 			'cap'			=> apply_filters( 'tb_string_swap_cap', 'edit_theme_options' )
 		);
 
@@ -307,7 +307,7 @@ function tb_string_swap_rolescheck() {
  */
 function tb_string_swap_add_page() {
 	// Create sub menu page
-	$string_swap_page = add_submenu_page( 'tools.php', 'TB String Swap', 'TB String Swap', 'administrator', 'tb_string_swap', 'tb_string_swap_page' );
+	$string_swap_page = add_submenu_page( 'themes.php', __('Theme Text Strings', 'theme-blvd-string-swap'), __('Theme Text Strings', 'theme-blvd-string-swap'), 'administrator', 'tb_string_swap', 'tb_string_swap_page' );
 	// Adds actions to hook in the required css and javascript
 	add_action( "admin_print_styles-$string_swap_page", 'optionsframework_load_styles' );
 	add_action( "admin_print_scripts-$string_swap_page", 'optionsframework_load_scripts' );
