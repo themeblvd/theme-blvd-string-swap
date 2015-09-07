@@ -2,7 +2,7 @@
 Contributors: themeblvd
 Tags: themeblvd, localization, localize, translate
 Requires at least: Theme Blvd Framework 2.0+
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 
 When using a theme with Theme Blvd framework version 2.0+, this plugin is will allow to translate strings you see on the frontend of your website.
 
@@ -35,6 +35,8 @@ After you install this plugin, you can then go to *Tools > TB String Swap* in yo
 1. Admin interface for plugin under *Tools > TB String Swap*.
 
 == Changelog ==
+
+= 1.0.8 =
 
 = 1.0.7 =
 
