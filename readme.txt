@@ -1,7 +1,7 @@
 === Theme Blvd String Swap ===
 Contributors: themeblvd
 Tags: themeblvd, localization, localize, translate
-Requires at least: Theme Blvd Framework 2.0+
+Requires at least: Theme Blvd Framework 2.4+
 Stable tag: 1.0.9
 
 When using a theme with Theme Blvd framework version 2.0+, this plugin is will allow to translate strings you see on the frontend of your website.
@@ -39,6 +39,7 @@ After you install this plugin, you can then go to *Appearance > Theme Text Strin
 = 1.0.9 - 01/16/2018 =
 
 * Fixed PHP errors, "Warning: include_once( ..." -- This was happening in themes with Theme Blvd Framework 2.7+.
+* Removed support for really old, non-supported themes; this plugin now requires Theme Blvd Framework 2.4+.
 
 = 1.0.8 - 09/07/2015 =
 

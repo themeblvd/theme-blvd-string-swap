@@ -41,7 +41,7 @@ add_action( 'init', 'tb_string_swap_textdomain' );
 
 /**
  * Display warning telling the user they must have a
- * theme with Theme Blvd framework v2.2+ installed in
+ * theme with Theme Blvd framework v2.4+ installed in
  * order to run this plugin.
  *
  * @since 1.0.4
@@ -54,7 +54,7 @@ function tb_string_swap_warning() {
 
 	if ( ! get_user_meta( $current_user->ID, 'tb-nag-string-swap-no-framework' ) ) {
 		echo '<div class="updated">';
-		echo '<p><strong>Theme Blvd String Swap:</strong> '.__( 'You are not using a theme with the Theme Blvd Framework v2+, and so this plugin will not do anything.', 'theme-blvd-string-swap' ).'</p>';
+		echo '<p><strong>Theme Blvd String Swap:</strong> '.__( 'You are not using a theme with the Theme Blvd Framework v2.4+, and so this plugin will not do anything.', 'theme-blvd-string-swap' ).'</p>';
 		echo '<p><a href="'.tb_string_swap_disable_url('string-swap-no-framework').'">'.__('Dismiss this notice', 'theme-blvd-string-swap').'</a> | <a href="http://www.themeblvd.com" target="_blank">'.__('Visit ThemeBlvd.com', 'theme-blvd-string-swap').'</a></p>';
 		echo '</div>';
 	}
@@ -109,62 +109,6 @@ function tb_string_swap_disable_url( $id ) {
 /*-----------------------------------------------------------------------------------*/
 
 /**
- * Get text strings
- *
- * This function only gets used if the user
- * is using a theme with Theme Blvd framework
- * prior to 2.1. So, it's essentially a fail-safe.
- */
-function tb_string_swap_get_strings() {
-	$locals = array (
-		'404'						=> 'Apologies, but the page you\'re looking for can\'t be found.',
-		'404_title'					=> '404 Error',
-		'archive_no_posts'			=> 'Apologies, but there are no posts to display.',
-		'archive'					=> 'Archive',
-		'cancel_reply_link'			=> 'Cancel reply',
-		'categories'				=> 'Categories',
-		'category'					=> 'Category',
-		'comment_navigation'		=> 'Comment navigation',
-		'comments'					=> 'Comments',
-		'comments_closed'			=> 'Comments are closed.',
-		'comments_newer'			=> 'Newer Comments &rarr;',
-		'comments_no_password'		=> 'This post is password protected. Enter the password to view any comments.',
-		'comments_older'			=> '&larr; Older Comments',
-		'comments_title_single'		=> 'One comment on &ldquo;%2$s&rdquo;',
-		'comments_title_multiple'	=> '%1$s comments on &ldquo;%2$s&rdquo;',
-		'contact_us'				=> 'Contact Us',
-		'crumb_404'					=> 'Error 404',
-		'crumb_author'				=> 'Articles posted by',
-		'crumb_search'				=> 'Search results for',
-		'crumb_tag'					=> 'Posts tagged',
-		'edit_page'					=> 'Edit Page',
-		'email'						=> 'Email',
-		'home'						=> 'Home',
-		'invalid_layout'			=> 'Invalid Layout ID',
-		'label_submit'				=> 'Post Comment',
-		'last_30'					=> 'The Last 30 Posts',
-		'monthly_archives'			=> 'Monthly Archives',
-		'name'						=> 'Name',
-		'page'						=> 'Page',
-		'pages'						=> 'Pages',
-		'page_num'					=> 'Page %s',
-		'posts_per_category'		=> 'Posts per category',
-		'navigation' 				=> 'Navigation',
-		'no_slider' 				=> 'Slider does not exist.',
-		'no_slider_selected' 		=> 'Oops! You have not selected a slider in your layout.',
-		'no_video'					=> 'The video url could not retrieve a video.',
-		'read_more'					=> 'Read More',
-		'search'					=> 'Search the site...',
-		'search_no_results'			=> 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.',
-		'tag'						=> 'Tag',
-		'title_reply'				=> 'Leave a Reply',
-		'title_reply_to'			=> 'Leave a Reply to %s',
-		'website'					=> 'Website'
-	);
-	return $locals;
-}
-
-/**
  * Get Options to pass into Option Framework's
  * function to generate form.
  */
@@ -173,19 +117,7 @@ function tb_string_swap_get_options() {
 	// Retrieve current local text strings -- This will also
 	// be modified later to tell the user they need to
 	// update their theme.
-	if ( function_exists('themeblvd_get_all_locals') ) {
-
-		// Dynamically pull from theme with
-		// filters applied.
-		$locals = themeblvd_get_all_locals();
-
-	} else {
-
-		// Old method for people using Theme Blvd
-		// framework prior to 2.1
-		$locals = tb_string_swap_get_strings();
-
-	}
+	$locals = themeblvd_get_all_locals();
 
 	// Configure options array
 	$options[] = array(
@@ -239,181 +171,28 @@ function tb_string_swap_get_options() {
  */
 function tb_string_swap_admin() {
 
-	// Check to make sure Theme Blvd Framework 2.0+ is running
-	if ( ! defined( 'TB_FRAMEWORK_VERSION' ) || version_compare( TB_FRAMEWORK_VERSION, '2.0.0', '<' ) ) {
+	global $_tb_string_swap_admin;
+
+	// Check to make sure Theme Blvd Framework 2.4+ is running
+	if ( ! defined( 'TB_FRAMEWORK_VERSION' ) || version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '<' ) ) {
 		add_action( 'admin_notices', 'tb_string_swap_warning' );
 		add_action( 'admin_init', 'tb_string_swap_disable_nag' );
 		return;
 	}
 
-	// If using framework v2.2+, we can use the framework's
-	// internal options system and if not, we can do it the
-	// old-fashioned way.
+	$options = tb_string_swap_get_options();
 
-	if ( class_exists( 'Theme_Blvd_Options_Page' ) ) {
+	$args = array(
+		'parent'		=> 'themes.php', // only used prior to framework 2.5.2
+		'page_title' 	=> __( 'Theme Text Strings', 'theme-blvd-string-swap' ),
+		'menu_title' 	=> __( 'Theme Text Strings', 'theme-blvd-string-swap' ),
+		'cap'			=> apply_filters( 'tb_string_swap_cap', 'edit_theme_options' )
+	);
 
-		// Use new options system incorporated in v2.2.
+	$_tb_string_swap_admin = new Theme_Blvd_Options_Page( 'tb_string_swap', $options, $args );
 
-		global $_tb_string_swap_admin;
-
-		$options = tb_string_swap_get_options();
-
-		$args = array(
-			'parent'		=> 'themes.php', // only used prior to framework 2.5.2
-			'page_title' 	=> __( 'Theme Text Strings', 'theme-blvd-string-swap' ),
-			'menu_title' 	=> __( 'Theme Text Strings', 'theme-blvd-string-swap' ),
-			'cap'			=> apply_filters( 'tb_string_swap_cap', 'edit_theme_options' )
-		);
-
-		$_tb_string_swap_admin = new Theme_Blvd_Options_Page( 'tb_string_swap', $options, $args );
-
-	} else {
-
-		// Initiate old-school method for framewok v2.0-2.1
-		add_action( 'init', 'tb_string_swap_rolescheck' );
-
-	}
 }
 add_action( 'after_setup_theme', 'tb_string_swap_admin' );
-
-/**
- * Hook everything in to being the process only if the user can
- * edit theme options, or else no use running this plugin.
- *
- * NOTE: This only is used if we're using framework v2.0-2.1.
- */
-function tb_string_swap_rolescheck() {
-	if ( current_user_can( 'edit_theme_options' ) ) {
-		add_action( 'admin_init', 'tb_string_swap_init' );
-		add_action( 'admin_menu', 'tb_string_swap_add_page');
-	}
-}
-
-/**
- * Add a menu page for this plugin.
- *
- * NOTE: This only is used if we're using framework v2.0-2.1.
- */
-function tb_string_swap_add_page() {
-	// Create sub menu page
-	$string_swap_page = add_submenu_page( 'themes.php', __('Theme Text Strings', 'theme-blvd-string-swap'), __('Theme Text Strings', 'theme-blvd-string-swap'), 'administrator', 'tb_string_swap', 'tb_string_swap_page' );
-	// Adds actions to hook in the required css and javascript
-	add_action( "admin_print_styles-$string_swap_page", 'optionsframework_load_styles' );
-	add_action( "admin_print_scripts-$string_swap_page", 'optionsframework_load_scripts' );
-	add_action( "admin_print_styles-$string_swap_page", 'optionsframework_mlu_css', 0 );
-	add_action( "admin_print_scripts-$string_swap_page", 'optionsframework_mlu_js', 0 );
-}
-
-/**
- * Inititate anything needed for the plugin.
- *
- * NOTE: This only is used if we're using framework v2.0-2.1.
- */
-function tb_string_swap_init() {
-	// Register settings
-	register_setting( 'tb_string_swap_settings', 'tb_string_swap', 'tb_string_swap_validate' );
-}
-
-/**
- * Validate settings when updated.
- *
- * Note: This function realistically has more than it needs.
- * In this specific plugin, we're only working with one kind
- * of option, which is the "textarea" type of option, however
- * I'm keeping all validation types in this plugin as to setup
- * a nice model for making more plugins in the future that
- * may also include different kinds of options.
- *
- * NOTE: This only is used if we're using framework v2.0-2.1.
- */
-function tb_string_swap_validate( $input ) {
-
-	// Reset Settings
-	if ( isset( $_POST['reset'] ) ) {
-		$empty = array();
-		add_settings_error( 'tb_string_swap', 'restore_defaults', __( 'Default options restored.', 'theme-blvd-string-swap' ), 'updated fade' );
-		return $empty;
-	}
-
-	// Save Options
-	if ( isset( $_POST['update'] ) && isset( $_POST['options'] ) ) {
-
-		$clean = array();
-		$options = tb_string_swap_get_options();
-
-		foreach ( $options as $option ) {
-
-			// Verify we have what need from options
-			if ( ! isset( $option['id'] ) ) continue;
-			if ( ! isset( $option['type'] ) ) continue;
-
-			$id = preg_replace( '/\W/', '', strtolower( $option['id'] ) );
-
-			// Set checkbox to false if it wasn't sent in the $_POST['options']
-			if ( 'checkbox' == $option['type'] && ! isset( $_POST['options'][$id] ) ) {
-				$_POST['options'][$id] = '0';
-			}
-
-			// Set each item in the multicheck to false if it wasn't sent in the $_POST['options']
-			if ( 'multicheck' == $option['type'] && ! isset( $_POST['options'][$id] ) ) {
-				foreach ( $option['options'] as $key => $value ) {
-					$_POST['options'][$id][$key] = '0';
-				}
-			}
-
-			// For a value to be submitted to database it must pass through a sanitization filter
-			if ( has_filter( 'of_sanitize_' . $option['type'] ) ) {
-				$clean[$id] = apply_filters( 'of_sanitize_' . $option['type'], $_POST['options'][$id], $option );
-			}
-		}
-
-		add_settings_error( 'tb_string_swap', 'save_options', __( 'Options saved.', 'theme-blvd-string-swap' ), 'updated fade' );
-
-		return $clean;
-	}
-}
-
-/*-----------------------------------------------------------------------------------*/
-/* Display Admin Page
-/*-----------------------------------------------------------------------------------*/
-
-/**
- * Builds out the full admin page.
- *
- * NOTE: This only is used if we're using framework v2.0-2.1.
- */
-function tb_string_swap_page() {
-
-	// DEBUG
-	// $settings = get_option('tb_string_swap');
-	// echo '<pre>'; print_r($settings); echo '</pre>';
-
-	// Build form
-	$options = tb_string_swap_get_options();
-	$settings = get_option('tb_string_swap');
-	$form = optionsframework_fields( 'options', $options, $settings, false );
-	settings_errors();
-	?>
-	<div id="tb_string_swap">
-		<div id="optionsframework" class="wrap">
-		    <h2><?php _e( 'Theme Blvd String Swap', 'theme-blvd-string-swap' ); ?></h2>
-			<div class="metabox-holder">
-				<form id="tb_string_swap_form" action="options.php" method="post">
-					<?php settings_fields('tb_string_swap_settings'); ?>
-					<div class="inner-group">
-						<?php echo $form[0]; ?>
-					</div><!-- .group (end) -->
-					 <div id="optionsframework-submit">
-						<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( __( 'Save Options', 'theme-blvd-string-swap' ) ); ?>" />
-			            <input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'theme-blvd-string-swap' ) ); ?>' );" />
-			            <div class="clear"></div>
-					</div>
-				</form><!-- #tb_string_swap_form (end) -->
-			</div><!-- .metabox-holder (end) -->
-		</div> <!-- #optionsframework (end) -->
-	</div><!-- #tb_string_swap (end) -->
-	<?php
-}
 
 /*-----------------------------------------------------------------------------------*/
 /* Filter changes on frontend
@@ -474,7 +253,7 @@ function tb_string_swap_add_actions() {
 
 	$new_locals = get_option('tb_string_swap');
 
-	if ( isset( $new_locals['blog_meta'] ) && $new_locals['blog_meta'] ) {
+	if ( ! empty( $new_locals['blog_meta'] ) ) {
 		remove_all_actions( 'themeblvd_blog_meta' );
 		add_action( 'themeblvd_blog_meta', 'tb_string_swap_blog_meta' );
 	}
