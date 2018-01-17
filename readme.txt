@@ -38,43 +38,44 @@ After you install this plugin, you can then go to *Appearance > Theme Text Strin
 
 = 1.1.0 - 01/16/2018 =
 
-* Fixed PHP errors, "Warning: include_once( ..." -- This was happening in themes with Theme Blvd Framework 2.7+.
-* Removed support for really old, non-supported themes; this plugin now requires Theme Blvd Framework 2.4+.
+* Added compatibility for Theme Blvd Framework 2.7+.
+* Code formatting improvements to pass [WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards).
+* Removed support for much older, non-supported themes; this plugin now requires Theme Blvd Framework 2.4+.
 
 = 1.0.8 - 09/07/2015 =
 
 * Admin page moved to *Appearance > Theme Text Strings*.
 
-= 1.0.7 - 12/17/14 =
+= 1.0.7 - 12/17/2014 =
 
 * Fixed issues with previously saved options not showing up after last update.
 
-= 1.0.6 - 12/11/14 =
+= 1.0.6 - 12/11/2014 =
 
 * GlotPress compatibility (for 2015 wordpress.org release).
 * Minor security fix.
 
-= 1.0.5 - 06/05/13 =
+= 1.0.5 - 06/05/2013 =
 
 * Fixed "Dismiss" link not working for framework notice on all admin pages.
 
-= 1.0.4 - 05/28/13 =
+= 1.0.4 - 05/28/2013 =
 
-* Added compatibility for framework v2.3.
+* Added compatibility for Theme Blvd Framework 2.3+.
 
-= 1.0.3 - 09/18/12 =
+= 1.0.3 - 09/18/2012 =
 
-* Added compatibility for framework v2.2.
+* Added compatibility for Theme Blvd Framework  2.2+.
 
-= 1.0.2 - 08/22/12 =
+= 1.0.2 - 08/22/2012 =
 
 * Added compatibility for latest Theme Blvd patch updates - Akita v1.1.5, Alyeska v2.1.5, Arcadian v1.1.5, Barely Corporate v3.1.5, Breakout v1.1.4, Prime Time v1.1.4, and Swagger 1.1.5
 
-= 1.0.1 - 05/18/12 =
+= 1.0.1 - 05/18/2012 =
 
 * Plugin now works with a more dynamically to pull text strings with new structure of [Theme Blvd Framework 2.1 update](http://www.wpjumpstart.com/framework-updates/theme-blvd-2-1-0-framework-update/) with fallbacks built-in for previous framework versions.
 * Added higher priority to text string filter to ensure that the plugin will, not only override the framework, but also any text strings edits your premium theme may have made.
 
-= 1.0.0 - 01/30/12 =
+= 1.0.0 - 01/30/2012 =
 
 * This is the first release.
