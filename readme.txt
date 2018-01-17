@@ -2,13 +2,13 @@
 Contributors: themeblvd
 Tags: themeblvd, localization, localize, translate
 Requires at least: Theme Blvd Framework 2.4+
-Stable tag: 1.0.9
+Stable tag: 1.1.0
 
-When using a theme with Theme Blvd framework version 2.0+, this plugin is will allow to translate strings you see on the frontend of your website.
+When using a theme with Theme Blvd framework version 2.4+, this plugin is will allow to translate strings you see on the frontend of your website.
 
 == Description ==
 
-When using a theme with Theme Blvd framework version 2.0+, this plugin is will provide you with a user-friendly interface to translate most of the strings you see on the frontend of your website.
+When using a theme with Theme Blvd framework version 2.4+, this plugin is will provide you with a user-friendly interface to translate most of the strings you see on the frontend of your website.
 
 = Who is this plugin for? =
 
@@ -36,7 +36,7 @@ After you install this plugin, you can then go to *Appearance > Theme Text Strin
 
 == Changelog ==
 
-= 1.0.9 - 01/16/2018 =
+= 1.1.0 - 01/16/2018 =
 
 * Fixed PHP errors, "Warning: include_once( ..." -- This was happening in themes with Theme Blvd Framework 2.7+.
 * Removed support for really old, non-supported themes; this plugin now requires Theme Blvd Framework 2.4+.
