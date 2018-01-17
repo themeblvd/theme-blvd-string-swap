@@ -170,17 +170,6 @@ function tb_string_swap_get_strings() {
  */
 function tb_string_swap_get_options() {
 
-	// Prior to framework v2.2, frontend locals were not
-	// included on admin side.
-	$old_file = TEMPLATEPATH . '/framework/frontend/functions/locals.php';
-	$new_file_1 = TEMPLATEPATH . '/framework/api/locals.php'; // framework v2.2
-	$new_file_2 = TEMPLATEPATH . '/framework/includes/locals.php'; // framework v2.3+
-
-	// So if 2.2's or 2.3+'s files don't exist, we'll manually include the old file.
-	if ( ! file_exists( $new_file_1 ) && ! file_exists( $new_file_2 ) ) {
-		include_once( $old_file ); // For framework prior to 2-2.1
-	}
-
 	// Retrieve current local text strings -- This will also
 	// be modified later to tell the user they need to
 	// update their theme.

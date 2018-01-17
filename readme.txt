@@ -38,6 +38,8 @@ After you install this plugin, you can then go to *Appearance > Theme Text Strin
 
 = 1.0.9 - 01/16/2018 =
 
+* Fixed PHP errors, "Warning: include_once( ..." -- This was happening in themes with Theme Blvd Framework 2.7+.
+
 = 1.0.8 - 09/07/2015 =
 
 * Admin page moved to *Appearance > Theme Text Strings*.
