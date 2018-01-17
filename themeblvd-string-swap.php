@@ -171,25 +171,29 @@ function tb_string_swap_get_options() {
  */
 function tb_string_swap_admin() {
 
-	global $_tb_string_swap_admin;
+	if ( class_exists( 'Theme_Blvd_Options_Page' ) ) {
 
-	// Check to make sure Theme Blvd Framework 2.4+ is running
-	if ( ! defined( 'TB_FRAMEWORK_VERSION' ) || version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '<' ) ) {
-		add_action( 'admin_notices', 'tb_string_swap_warning' );
-		add_action( 'admin_init', 'tb_string_swap_disable_nag' );
-		return;
+		global $_tb_string_swap_admin;
+
+		// Check to make sure Theme Blvd Framework 2.4+ is running
+		if ( ! defined( 'TB_FRAMEWORK_VERSION' ) || version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '<' ) ) {
+			add_action( 'admin_notices', 'tb_string_swap_warning' );
+			add_action( 'admin_init', 'tb_string_swap_disable_nag' );
+			return;
+		}
+
+		$options = tb_string_swap_get_options();
+
+		$args = array(
+			'parent'		=> 'themes.php', // only used prior to framework 2.5.2
+			'page_title' 	=> __( 'Theme Text Strings', 'theme-blvd-string-swap' ),
+			'menu_title' 	=> __( 'Theme Text Strings', 'theme-blvd-string-swap' ),
+			'cap'			=> apply_filters( 'tb_string_swap_cap', 'edit_theme_options' )
+		);
+
+		$_tb_string_swap_admin = new Theme_Blvd_Options_Page( 'tb_string_swap', $options, $args );
+
 	}
-
-	$options = tb_string_swap_get_options();
-
-	$args = array(
-		'parent'		=> 'themes.php', // only used prior to framework 2.5.2
-		'page_title' 	=> __( 'Theme Text Strings', 'theme-blvd-string-swap' ),
-		'menu_title' 	=> __( 'Theme Text Strings', 'theme-blvd-string-swap' ),
-		'cap'			=> apply_filters( 'tb_string_swap_cap', 'edit_theme_options' )
-	);
-
-	$_tb_string_swap_admin = new Theme_Blvd_Options_Page( 'tb_string_swap', $options, $args );
 
 }
 add_action( 'after_setup_theme', 'tb_string_swap_admin' );
